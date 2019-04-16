@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy1 : MonoBehaviour {
+public class Enemy : MonoBehaviour {
+
+    public float HP = 150;
 
     private Transform[] positions;
 
     private int _index = 0;
 
     public float _speed = 10;
+
+    public GameObject ExplotionEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -44,5 +48,18 @@ public class enemy1 : MonoBehaviour {
     private void OnDestroy()
     {
         EnemySpawner.CountEnemyAlive--;
+    }
+
+
+    public void TakeDamage(float damageValue)
+    {
+        if (HP < 0) return;
+        HP -= damageValue;
+        if (HP <= 0)
+        {
+            GameObject explotion = GameObject.Instantiate(ExplotionEffect, transform.position, transform.rotation);
+            Destroy(explotion,1);
+            Destroy(this.gameObject);
+        }
     }
 }

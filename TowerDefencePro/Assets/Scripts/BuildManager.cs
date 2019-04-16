@@ -8,11 +8,8 @@ public class BuildManager : MonoBehaviour {
     public TurretData lasserTurretData;
     public TurretData missileTurretData;
     public TurretData standardTurretData;
-
     public int Money = 1000;
     public Text MoneyText;
-
-
     public Animator moneyAnim;
 
     public void UpdateMoney(int money)
