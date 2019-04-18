@@ -274,6 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys: []
+  upgradeCanvas: {fileID: 1941862181539754, guid: 8c043590778c11d4bbac2e30dc188f44,
+    type: 2}
   _attackRateTime: 1
   timer: 0
   bulletPrefab: {fileID: 1787844090433134, guid: 9024c7a31084efe4288b249ee2eea28e,

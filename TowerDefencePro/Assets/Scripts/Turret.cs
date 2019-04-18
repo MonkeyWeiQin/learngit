@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour {
     public List<GameObject> enemys = new List<GameObject>();
+    public GameObject upgradeCanvas;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +34,7 @@ public class Turret : MonoBehaviour {
     private void Start()
     {
         timer = _attackRateTime;
+        //GameObject.Instantiate(upgradeCanvas, this.transform);
     }
 
     private void Update()

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
     public float HP = 150;
+    private float totalHP;
 
     private Transform[] positions;
 
@@ -14,10 +16,13 @@ public class Enemy : MonoBehaviour {
 
     public GameObject ExplotionEffect;
 
+    private Slider HpBar;
+
 	// Use this for initialization
 	void Start () {
-        positions = WayPoints.positions;
-
+        positions   = WayPoints.positions;
+        totalHP     = HP;
+        HpBar       = GetComponentInChildren<Slider>();
     }
 	
 	// Update is called once per frame
@@ -55,11 +60,17 @@ public class Enemy : MonoBehaviour {
     {
         if (HP < 0) return;
         HP -= damageValue;
+        UpdateHpBar(HP);
         if (HP <= 0)
         {
             GameObject explotion = GameObject.Instantiate(ExplotionEffect, transform.position, transform.rotation);
             Destroy(explotion,1);
             Destroy(this.gameObject);
         }
+    }
+
+    void UpdateHpBar(float hp)
+    {
+        HpBar.value = hp / totalHP;
     }
 }

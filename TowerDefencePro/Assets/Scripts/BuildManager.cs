@@ -12,6 +12,10 @@ public class BuildManager : MonoBehaviour {
     public Text MoneyText;
     public Animator moneyAnim;
 
+    public GameObject upgradeCanvas;
+    public Button buttonUpgrade;
+
+
     public void UpdateMoney(int money)
     {
         Money += money;
@@ -55,7 +59,7 @@ public class BuildManager : MonoBehaviour {
                     else
                     {
                         //不可以创建
-
+                        ShowUpgradeUI(mapCube.transform.position, mapCube.IsUpgrade);
                     }
                 }
             }
@@ -70,6 +74,7 @@ public class BuildManager : MonoBehaviour {
             _selectedTurretData = lasserTurretData;
         }
     }
+
     public void OnMissileSelected(bool isOn)
     {
         if (isOn)
@@ -77,6 +82,7 @@ public class BuildManager : MonoBehaviour {
             _selectedTurretData = missileTurretData;
         }
     }
+
     public void OnStandardSelected(bool isOn)
     {
         if (isOn)
@@ -86,4 +92,28 @@ public class BuildManager : MonoBehaviour {
     }
 
 
+    void ShowUpgradeUI(Vector3 pos, bool isDisableUpgrade = false)
+    {
+        upgradeCanvas.SetActive(true);
+        upgradeCanvas.transform.position = pos;
+        buttonUpgrade.interactable = !isDisableUpgrade;
+    }
+
+
+    void HideUpgradeUI()
+    {
+        upgradeCanvas.SetActive(false);
+    }
+
+
+    public void OnUpgradeButtonDown()
+    {
+        //TODO
+    }
+
+    public void OnDestroyButtonDown()
+    {
+        //TODO
+    }
 }
+
