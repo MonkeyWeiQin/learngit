@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Turret : MonoBehaviour {
     public List<GameObject> enemys = new List<GameObject>();
@@ -35,6 +36,7 @@ public class Turret : MonoBehaviour {
     {
         timer = _attackRateTime;
         //GameObject.Instantiate(upgradeCanvas, this.transform);
+        //Application.streamingAssetsPath
     }
 
     private void Update()
