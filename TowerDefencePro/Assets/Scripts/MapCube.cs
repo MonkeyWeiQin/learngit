@@ -16,16 +16,20 @@ public class MapCube : MonoBehaviour {
     private Renderer renderer;
     [HideInInspector]
     public bool IsUpgrade = false;
+    [HideInInspector]
+    public TurretData _turretData;
+
 
     private void Start()
     {
         renderer = this.GetComponent<Renderer>();
     }
 
-    public void BuildTurret(GameObject prefab)
+    public void BuildTurret(TurretData turretData)
     {
+        this._turretData    = turretData;
         IsUpgrade           = false;
-        turretGo            = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
+        turretGo            = GameObject.Instantiate(turretData._turretPrefab, transform.position, Quaternion.identity);
         GameObject effect   = GameObject.Instantiate(_buildEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1);
     }
@@ -42,6 +46,28 @@ public class MapCube : MonoBehaviour {
     private void OnMouseExit()
     {
         renderer.material.color = Color.white;
+    }
+
+
+
+    public void UpgradeTurret()
+    {
+        if (IsUpgrade) return;
+        Destroy(turretGo);
+        IsUpgrade = true;
+        turretGo  = GameObject.Instantiate(_turretData._turretUpgradePrefab, transform.position, Quaternion.identity);
+        
+    }
+
+
+    public void DestroyTurret()
+    {
+        GameObject effect = GameObject.Instantiate(_buildEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
+        Destroy(turretGo);
+        IsUpgrade   = false;
+        turretGo    = null;
+        _turretData = null;
     }
 
 }
